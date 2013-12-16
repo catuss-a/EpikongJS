@@ -49,7 +49,7 @@ function Perso(perso, map) {
 
     this.gravity = function() {
 	var can = true;
-	for (var i = 0; i < this.sprite.w; i++) {
+	for (var i = 0; i < this.sprite.w - 10; i++) {
 	    var posx = Math.floor((this.x + i) / 50);
 	    var posy = Math.floor((this.y + this.sprite.h + 1) / 50);
 	    if (this.map[posy][posx] != 0) {

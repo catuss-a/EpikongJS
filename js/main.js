@@ -47,7 +47,7 @@ function Perso(perso, map) {
 		this.x += 10;
     }
 
-    this.moveLeft = function() {
+    this.gravity = function() {
 	var can = true;
 	for (var i = 0; i < this.sprite.w; i++) {
 	    var posx = Math.floor((this.x + i) / 50);

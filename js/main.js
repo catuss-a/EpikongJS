@@ -1,4 +1,3 @@
-
 var unit = { "w": 50, "h": 50 };
 
 function Perso(perso, map) {
@@ -11,8 +10,25 @@ function Perso(perso, map) {
     this.moves[39] = false;
 
     this.update = function() {
+    	this.gravity();
 	this.moveRight();
 	this.moveLeft();
+    }
+    
+    this.gravity = function() {
+    	if (this.moves[37]) {
+	    var can = true;
+	    for (var i = 0; i < this.sprite.w; i++) {
+		var posx = Math.floor((this.x + i) / 50);
+		var posy = Math.floor((this.y + 1) / 50);
+		if (this.map[posy][posx] == 1) {
+		    can = false;
+		    break;
+		}
+	    }
+	    if (can)
+		this.y += 10;
+	}
     }
 
     this.moveLeft = function() {

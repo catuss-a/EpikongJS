@@ -15,6 +15,7 @@ function Perso(perso, map) {
     var RUNNING_RIGHT = 0;
     var RUNNING_LEFT = 1;
     var IDLE = 2;
+    var CLIMBING = 3;
 
     this.state = IDLE;
 
@@ -28,10 +29,10 @@ function Perso(perso, map) {
 	this.state = IDLE;
 	this.moveRight();
 	this.moveLeft();
+	this.climbUp();
+	this.climbDown()
 	this.gravity();
 	this.computeCoordAnim();
-	this.climbUp();
-	this.climbDown();
     }
 
     this.computeCoordAnim = function() {
@@ -100,6 +101,7 @@ function Perso(perso, map) {
 	    }
 	    if (can) {
 	        this.y -= 10;
+                this.pickSprite(CLIMBING, 7, 0.5);
 	    }
         }
     }
@@ -117,6 +119,7 @@ function Perso(perso, map) {
 	    }
 	    if (can) {
 	        this.y += 10;
+                this.pickSprite(CLIMBING, 7, 0.5);
 	    }
         }
     }
@@ -131,8 +134,9 @@ function Perso(perso, map) {
 		break;
 	    }
 	}
-	if (can)
+	if (can) {
 	    this.y += 10;
+        }
     }
 
     this.draw = function(ctx, camera) {
@@ -240,6 +244,7 @@ window.onload = function() {
     document.body.addEventListener("keyup", function(e) {
 	epi.mainPerso.moves[e.keyCode] = false;
     });
+
     setInterval(function() {
 	epi.mainLoop(ctx);
     }, 40);

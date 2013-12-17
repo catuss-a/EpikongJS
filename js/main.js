@@ -138,6 +138,7 @@ function epikongJS(name) {
     this.map = conf.map;
 
     this.wall = new Sprite(conf.wall);
+    this.outdoor = new Sprite(conf.outdoor);
     this.bush = new Sprite(conf.bush);
     this.ladder = new Sprite(conf.ladder);
     this.mainPerso = new Perso(conf.bunny, this.map);
@@ -168,6 +169,9 @@ function epikongJS(name) {
     		if (this.map[y][x] == 3)
 		    this.ladder.draw(ctx, 0, 0, this.ladder.w, this.ladder.h,
 				     basex, basey, this.ladder.w, this.ladder.h);
+    		if (this.map[y][x] == 6)
+		    this.outdoor.draw(ctx, 0, 0, this.outdoor.w, this.outdoor.h,
+				     basex, basey, this.outdoor.w, this.outdoor.h);
 
     	    }
     	}

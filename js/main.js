@@ -70,7 +70,7 @@ function Perso(perso, map) {
     }
 
     this.moveRight = function() {
-	if (this.moves[39])
+	if (this.moves[39]) {
 	    var can = true;
 	    for (var i = 0; i < this.sprite.h; i++) {
 		var posx = Math.floor((this.x + this.sprite.w - 10 + 1) / 50);
@@ -80,15 +80,16 @@ function Perso(perso, map) {
 		    break;
 		}
 	    }
-	if (can) {
-	    this.x += 10;
-	    this.pickSprite(RUNNING_RIGHT, 7, 0.5);
-	}
+	    if (can) {
+	        this.x += 10;
+	        this.pickSprite(RUNNING_RIGHT, 7, 0.5);
+	    }
+        }
     }
 
     this.climbUp = function() {
-    if (this.moves[38])
-    	var can = true;
+        if (this.moves[38]) {
+    	    var can = true;
 	    for (var i = 0; i < this.sprite.h; i++) {
 		var posx = Math.floor((this.x + i) / 50);
 		var posy = Math.floor((this.y + this.sprite.h - 1) / 50);
@@ -97,14 +98,15 @@ function Perso(perso, map) {
 		    break;
 		}
 	    }
-	if (can) {
-	    this.y -= 10;
-	}
+	    if (can) {
+	        this.y -= 10;
+	    }
+        }
     }
 
     this.climbDown = function() {
-    if (this.moves[40])
-    	var can = true;
+        if (this.moves[40]) {
+    	    var can = true;
 	    for (var i = 0; i < this.sprite.h; i++) {
 		var posx = Math.floor((this.x + i) / 50);
 		var posy = Math.floor((this.y + this.sprite.h) / 50);
@@ -113,9 +115,10 @@ function Perso(perso, map) {
 		    break;
 		}
 	    }
-	if (can) {
-	    this.y += 10;
-	}
+	    if (can) {
+	        this.y += 10;
+	    }
+        }
     }
 
     this.gravity = function() {

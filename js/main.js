@@ -32,7 +32,7 @@ function Perso(perso, map) {
 
     this.computeCoordAnim = function() {
 	if (this.state == IDLE) {
-	    this.pickSprite(IDLE, 54, 0.5);
+	    this.pickSprite(IDLE, 53, 0.5);
 	}
 	this.spriteCoord.y = this.state * this.sprite.h;
 	this.spriteCoord.x = Math.floor(this.animTab[this.state]) * this.sprite.w;

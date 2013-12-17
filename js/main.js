@@ -10,10 +10,41 @@ function Perso(perso, map) {
     this.moves[37] = false;
     this.moves[39] = false;
 
+    var RUNNING_RIGHT = 0;
+    var RUNNING_LEFT = 1;
+    var IDLE = 2;
+
+    this.state = IDLE;
+
+    this.spriteCoord = {
+	"x": 0,
+	"y": 0
+    };
+    this.animTab = [0, 0, 0, 0, 0, 0];
+
     this.update = function() {
+	this.state = IDLE;
 	this.moveRight();
 	this.moveLeft();
 	this.gravity();
+	this.computeCoordAnim();
+    }
+
+    this.computeCoordAnim = function() {
+	if (this.state == IDLE) {
+	    this.pickSprite(IDLE, 54, 0.5);
+	}
+	this.spriteCoord.y = this.state * this.sprite.h;
+	this.spriteCoord.x = Math.floor(this.animTab[this.state]) * this.sprite.w;
+    }
+
+    this.pickSprite = function(state, nbSprite, inc) {
+	this.state = state;
+	if (this.animTab[state] > nbSprite) {
+	    this.animTab[state] = 0;
+	} else {
+	    this.animTab[state] += inc;
+	}
     }
 
     this.moveLeft = function() {
@@ -27,8 +58,10 @@ function Perso(perso, map) {
 		    break;
 		}
 	    }
-	    if (can)
+	    if (can) {
 		this.x -= 10;
+		this.pickSprite(RUNNING_LEFT, 7, 0.5);
+	    }
 	}
     }
 
@@ -43,8 +76,10 @@ function Perso(perso, map) {
 		    break;
 		}
 	    }
-	    if (can)
-		this.x += 10;
+	if (can) {
+	    this.x += 10;
+	    this.pickSprite(RUNNING_RIGHT, 7, 0.5);
+	}
     }
 
     this.gravity = function() {
@@ -62,7 +97,8 @@ function Perso(perso, map) {
     }
 
     this.draw = function(ctx, camera) {
-	this.sprite.draw(ctx, 0, 0, this.sprite.w, this.sprite.h,
+	this.sprite.draw(ctx, this.spriteCoord.x, this.spriteCoord.y,
+			 this.sprite.w, this.sprite.h,
 			 this.x - camera.lookAt.x, this.y - camera.lookAt.y,
 			 this.sprite.w, this.sprite.h);
     }

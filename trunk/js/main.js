@@ -103,6 +103,7 @@ function epikongJS(name) {
 
     this.wall = new Sprite(conf.wall);
     this.bush = new Sprite(conf.bush);
+    this.ladder = new Sprite(conf.ladder);
     this.mainPerso = new Perso(conf.bunny, this.map);
     this.camera = new Camera(this.mainPerso, this.map);
 
@@ -110,7 +111,9 @@ function epikongJS(name) {
     this.getWidth = function() { return this.map[0].length; }
 
     this.drawScene = function(ctx) {
-	ctx.clearRect(0, 0, 800, 600);
+	// ctx.clearRect(0, 0, 800, 600);
+	ctx.fillStyle = "#FF";
+	ctx.fillRect(0, 0, 800, 600);
 	this.drawMap(ctx);
 	this.mainPerso.draw(ctx, this.camera);
     }
@@ -126,6 +129,9 @@ function epikongJS(name) {
     		if (this.map[y][x] == 2)
 		    this.bush.draw(ctx, 0, 0, this.bush.w, this.bush.h,
 				   basex, basey, this.bush.w, this.bush.h);
+    		if (this.map[y][x] == 3)
+		    this.ladder.draw(ctx, 0, 0, this.ladder.w, this.ladder.h,
+				     basex, basey, this.ladder.w, this.ladder.h);
 
     	    }
     	}

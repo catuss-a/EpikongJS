@@ -4,6 +4,9 @@
 	"wall":	{ "path": "sprites/wall.png",
 		  "height": 50,
 		  "width": 50 },
+	"ladder": { "path": "sprites/ladder.png",
+		    "height": 50,
+		    "width": 50 },
 	"bush":	{ "path": "sprites/brush.png",
 		  "height": 50,
 		  "width": 50 },
@@ -11,7 +14,7 @@
 		   	       "height": 50,
 		   	       "width": 60 },
 		   "x": 2,
-		   "y": 7 },
+		   "y": 6 },
 	"map": [
 	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],

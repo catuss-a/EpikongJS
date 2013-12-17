@@ -9,6 +9,8 @@ function Perso(perso, map) {
     this.moves = [];
     this.moves[37] = false;
     this.moves[39] = false;
+    this.moves[38] = false;
+    this.moves[40] = false;
 
     var RUNNING_RIGHT = 0;
     var RUNNING_LEFT = 1;
@@ -28,6 +30,8 @@ function Perso(perso, map) {
 	this.moveLeft();
 	this.gravity();
 	this.computeCoordAnim();
+	this.climbUp();
+	this.climbDown();
     }
 
     this.computeCoordAnim = function() {
@@ -79,6 +83,38 @@ function Perso(perso, map) {
 	if (can) {
 	    this.x += 10;
 	    this.pickSprite(RUNNING_RIGHT, 7, 0.5);
+	}
+    }
+
+    this.climbUp = function() {
+    if (this.moves[38])
+    	var can = true;
+	    for (var i = 0; i < this.sprite.h; i++) {
+		var posx = Math.floor((this.x + i) / 50);
+		var posy = Math.floor((this.y + this.sprite.h - 1) / 50);
+		if (this.map[posy][posx] != 3) {
+		    can = false;
+		    break;
+		}
+	    }
+	if (can) {
+	    this.y -= 10;
+	}
+    }
+
+    this.climbDown = function() {
+    if (this.moves[40])
+    	var can = true;
+	    for (var i = 0; i < this.sprite.h; i++) {
+		var posx = Math.floor((this.x + i) / 50);
+		var posy = Math.floor((this.y + this.sprite.h) / 50);
+		if (this.map[posy][posx] != 3) {
+		    can = false;
+		    break;
+		}
+	    }
+	if (can) {
+	    this.y += 10;
 	}
     }
 
